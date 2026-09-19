@@ -10,7 +10,6 @@ const VideoContainer = () => {
   const getVideo = async () => {
     const res = await fetch(YOUTUBE_VIDEOS_API);
     const data = await res.json();
-    console.log(data.items);
     return data;
   };
 
@@ -25,13 +24,24 @@ const VideoContainer = () => {
   return (
     <div className="flex flex-wrap">
       {videos &&
-        videos.map((video) => {
+        videos.map((video,i) => {
           return (
             <Link key={video["id"]} to={"/watch?v=" + video["id"]}>
-              <VideoCard info={video} />
+              {i===0? <AdVideoCard info={video}/> : <VideoCard info={video} />}
             </Link>
           );
         })}
+    </div>
+  );
+};
+
+// HOC
+
+const AdVideoCard = ({ info }) => {
+  return (
+    <div className="m-0 p-0 border border-b-black">
+      <VideoCard info={info} />
+      <p className="mx-2">Ad: Sponsored</p>
     </div>
   );
 };

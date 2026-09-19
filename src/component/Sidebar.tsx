@@ -11,7 +11,7 @@ const Sidebar = () => {
   if (!isToggle) return null;
 
   return (
-    <div className="p-5 shadow-lg w-60">
+    <div className="p-10 shadow-lg w-96">
       <ul>
         <Link to="/">
           <li>Home</li>

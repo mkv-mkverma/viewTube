@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducers from "./appSlice";
+import appReducers from "./appSlice";
+import cacheReduces from "./cacheSlice";
 const store = configureStore({
   reducer: {
-    app: reducers,
+    app: appReducers,
+    search: cacheReduces,
   },
 });
 
