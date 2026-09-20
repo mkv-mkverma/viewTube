@@ -1,12 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../utils/appSlice";
 import { useEffect, useState } from "react";
-import {
-  HEMBERGER_ICON,
-  USER_ICON,
-  YOUTUBE_LOGO,
-  YOUTUBE_SEARCH_API,
-} from "../utils/constant";
+import { HEMBERGER_ICON, USER_ICON, YOUTUBE_LOGO } from "../utils/constant";
+import { getSearchSuggestions } from "../utils/suggestions";
 import { cacheResult } from "../utils/cacheSlice";
 import type { RootState } from "../utils/store";
 
@@ -28,15 +24,7 @@ const Head = () => {
       setSuggestions(searchCache[searchQuery]);
     } else {
       try {
-        const res = await fetch(
-          `${YOUTUBE_SEARCH_API}${encodeURIComponent(searchQuery.trim())}`,
-        );
-
-        const data = await res.json();
-
-        console.log("Suggestion API:", data);
-
-        const suggestions = data[1] || [];
+        const suggestions = await getSearchSuggestions(searchQuery.trim());
 
         setSuggestions(suggestions);
         dispatch(cacheResult({ [searchQuery]: suggestions }));
