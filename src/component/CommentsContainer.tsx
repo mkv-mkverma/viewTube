@@ -1,6 +1,6 @@
-import Comments from "./Comments";
+import Comments, { type CommentInfo } from "./Comments";
 
-const COMMENTS = [
+const COMMENTS: CommentInfo[] = [
   {
     name: "Manish",
     text: "Hello this is manish",
@@ -59,7 +59,7 @@ const COMMENTS = [
   },
 ];
 
-export const CommentsList = ({ comments }) => {
+export const CommentsList = ({ comments }: { comments: CommentInfo[] }) => {
   if (!comments?.length) return;
   return comments.map((comment, i) => {
     return (

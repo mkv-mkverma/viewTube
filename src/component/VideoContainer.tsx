@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 import { YOUTUBE_VIDEOS_API } from "../utils/constant";
-import VideoCard from "./videoCard";
+import VideoCard, { type VideoInfo } from "./VideoCard";
 import { Link } from "react-router-dom";
 
 const VideoContainer = () => {
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<VideoInfo[]>([]);
 
   const getVideo = async () => {
     const res = await fetch(YOUTUBE_VIDEOS_API);
@@ -37,7 +37,7 @@ const VideoContainer = () => {
 
 // HOC
 
-const AdVideoCard = ({ info }) => {
+const AdVideoCard = ({ info }: { info: VideoInfo }) => {
   return (
     <div className="m-0 p-0 border border-b-black">
       <VideoCard info={info} />

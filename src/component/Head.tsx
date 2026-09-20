@@ -8,14 +8,15 @@ import {
   YOUTUBE_SEARCH_API,
 } from "../utils/constant";
 import { cacheResult } from "../utils/cacheSlice";
+import type { RootState } from "../utils/store";
 
 const Head = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const dispatch = useDispatch();
-  const searchCache = useSelector((state) => state.search);
+  const searchCache = useSelector((state: RootState) => state.search);
 
   const getSearchSuggestion = async () => {
     if (!searchQuery.trim()) {

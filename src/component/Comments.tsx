@@ -1,7 +1,13 @@
 import { USER_ICON } from "../utils/constant";
 
-const Comments = ({ info }) => {
-  const { name, text, reply } = info;
+export interface CommentInfo {
+  name: string;
+  text: string;
+  reply: CommentInfo[];
+}
+
+const Comments = ({ info }: { info: CommentInfo }) => {
+  const { name, text } = info;
   return (
     <div className="flex bg-gray-200 m-2 rounded-1xl">
       <img src={USER_ICON} alt="user-icons" className=" w-15 h-15" />

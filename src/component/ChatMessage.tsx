@@ -1,6 +1,11 @@
 import { USER_ICON } from "../utils/constant";
 
-const ChatMessage = ({ name, message }) => {
+interface ChatMessageProps {
+  name: string;
+  message: string;
+}
+
+const ChatMessage = ({ name, message }: ChatMessageProps) => {
   return (
     <div className="flex items-start gap-2 px-2 py-1 shrink-0">
       <img

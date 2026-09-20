@@ -1,4 +1,14 @@
-const VideoCard = ({ info }) => {
+export interface VideoInfo {
+  id: string;
+  snippet: {
+    channelTitle: string;
+    title: string;
+    thumbnails?: { medium?: { url: string } };
+  };
+  statistics: { viewCount: string };
+}
+
+const VideoCard = ({ info }: { info: VideoInfo }) => {
   const { snippet, statistics } = info;
   const { channelTitle, title, thumbnails } = snippet;
 
